@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5433:5432"
+    environment:
+      POSTGRES_DB: keystone_dev
+      POSTGRES_USER: keystone
+      POSTGRES_PASSWORD: keystone
+    volumes:
+      - pgdata-alberta:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keystone -d keystone_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: ../keystone-gov/api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8002:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DATABASE_URL: "postgresql://keystone_app:keystone_app@postgres:5432/keystone_dev"
+      TAMPER_DATABASE_URL: "postgresql://keystone:keystone@postgres:5432/keystone_dev"
+      OLLAMA_URL: "http://host.docker.internal:11434"
+      CORPUS_ROOT: "/srv/keystone-corpus-dev"
+      DEPLOYMENT_CONFIG_PATH: "/etc/keystone/deployment.yaml"
+      AUDIT_HMAC_KEY: "${AUDIT_HMAC_KEY}"
+      AUTH_PASSWORD_SALT: "${AUTH_PASSWORD_SALT}"
+      CLOUDFLARE_ACCESS_ENABLED: "false"
+    volumes:
+      - /srv/keystone-corpus-dev:/srv/keystone-corpus-dev
+      - ./deployments/alberta-demo/deployment.yaml:/etc/keystone/deployment.yaml:ro
+
+  web:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/dist:/srv/console:ro
+
+volumes:
+  pgdata-alberta:

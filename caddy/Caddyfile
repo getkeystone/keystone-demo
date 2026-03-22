@@ -1,0 +1,17 @@
+:8080 {
+    # Proxy /api/* → API container (strip the /api prefix).
+    # Default reverse_proxy passes ALL request headers to the upstream unchanged.
+    # No header_up manipulation — a {>placeholder} that evaluates to empty string
+    # would cause Caddy to DELETE the header rather than forward it.
+    handle /api/* {
+        uri strip_prefix /api
+        reverse_proxy api:8000
+    }
+
+    # Serve the pre-built console static files.
+    handle {
+        root * /srv/console
+        try_files {path} /index.html
+        file_server
+    }
+}

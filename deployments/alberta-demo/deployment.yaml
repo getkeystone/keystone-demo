@@ -1,0 +1,49 @@
+deployment:
+  id: alberta-demo
+  name: "Safety Procedure Assistant"
+  subtitle: "Ask a question, get a cited answer from approved safety documents"
+
+roles:
+  - id: operator
+    label: "Operator"
+    level: 0
+  - id: supervisor
+    label: "Supervisor"
+    level: 1
+  - id: coordinator
+    label: "Safety Coordinator"
+    level: 0
+  - id: manager
+    label: "EHS Manager"
+    level: 2
+
+modes:
+  - id: operational
+    label: "Operational"
+    description: "Only approved, current procedures"
+    default: true
+  - id: training
+    label: "Training"
+    description: "Includes draft and superseded documents"
+
+suggested_queries:
+  - "What atmospheric testing is required before confined space entry?"
+  - "What fall protection is needed above 3 meters?"
+  - "What is the H2S exposure limit?"
+  - "What are the lockout/tagout requirements?"
+  - "What PPE is required for working with chemicals?"
+  - "What is the emergency response procedure?"
+
+demo_credentials:
+  - username: "operator1"
+    password: "demo123"
+    role: "Operator"
+  - username: "supervisor1"
+    password: "demo123"
+    role: "Supervisor"
+  - username: "coordinator1"
+    password: "demo123"
+    role: "Safety Coordinator"
+  - username: "manager1"
+    password: "demo123"
+    role: "EHS Manager"
