@@ -1,32 +1,23 @@
 # Alberta Safety Procedure Assistant — demo user roster.
-# Only these five users are provisioned for the public demo.
+# Only these four users are provisioned for the public demo.
 # Managed users are seeded from this file at startup (additive only).
 # Valid roles: member, officer, custodian, authority
 # Valid status: enabled, disabled
-
 version: 1
 users:
   - email: operator1@demo.getkeystone.ai
     display_name: Alex Torres (Operator)
     role: member
     status: enabled
-
   - email: supervisor1@demo.getkeystone.ai
     display_name: Jamie Chen (Supervisor)
     role: officer
     status: enabled
-
   - email: coordinator1@demo.getkeystone.ai
     display_name: Morgan Reid (Safety Coordinator)
     role: custodian
     status: enabled
-
   - email: manager1@demo.getkeystone.ai
     display_name: Sam Patel (EHS Manager)
     role: authority
-    status: enabled
-
-  - email: arnaldo@getkeystone.ai
-    display_name: Arnaldo Sepulveda (Keystone)
-    role: custodian
     status: enabled

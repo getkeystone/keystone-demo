@@ -34,6 +34,9 @@ suggested_queries:
   - "What PPE is required for working with chemicals?"
   - "What is the emergency response procedure?"
 
+features:
+  members_readonly: true
+
 demo_credentials:
   - username: "operator1"
     password: "demo123"

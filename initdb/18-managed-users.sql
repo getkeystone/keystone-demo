@@ -1,5 +1,5 @@
 -- Migration 18: Managed users table for KDAT-059 Authority user management.
--- managed_users is the canonical user management state, seeded from lrfd_user_roles.yaml.
+-- managed_users is the canonical user management state, seeded from user_roles.yaml.
 -- user_management_events is the governance audit trail for enable/disable/role changes.
 
 CREATE TABLE IF NOT EXISTS managed_users (
