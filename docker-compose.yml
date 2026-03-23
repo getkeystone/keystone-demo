@@ -18,9 +18,10 @@ services:
       retries: 5
 
   api:
-    build:
-      context: ../keystone-gov/api
-      dockerfile: Dockerfile
+    # build:
+    image: keystone-api:v0.4.1
+#       context: ../keystone-gov/api
+#       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "127.0.0.1:8002:8000"
@@ -38,9 +39,12 @@ services:
       AUDIT_HMAC_KEY: "${AUDIT_HMAC_KEY}"
       AUTH_PASSWORD_SALT: "${AUTH_PASSWORD_SALT}"
       CLOUDFLARE_ACCESS_ENABLED: "false"
+      SEED_DEMO_USERS: "true"
+      LRFD_ROLE_CONFIG_PATH: "/etc/keystone/user_roles.yaml"
     volumes:
       - /srv/keystone-corpus-dev:/srv/keystone-corpus-dev
       - ./deployments/alberta-demo/deployment.yaml:/etc/keystone/deployment.yaml:ro
+      - ./deployments/alberta-demo/user_roles.yaml:/etc/keystone/user_roles.yaml:ro
 
   web:
     image: caddy:2-alpine
