@@ -19,7 +19,7 @@ services:
 
   api:
     # build:
-    image: keystone-api:v0.5.0-hhem
+    image: keystone-api:v0.5.1-hhem-calibrated
 #       context: ../keystone-gov/api
 #       dockerfile: Dockerfile
     restart: unless-stopped
@@ -43,7 +43,8 @@ services:
       SEED_DEMO_USERS: "true"
       QUERY_RATE_LIMIT: "120"
       LRFD_ROLE_CONFIG_PATH: "/etc/keystone/user_roles.yaml"
-      HHEM_THRESHOLD: "0.25"
+      HHEM_THRESHOLD_DETERMINISTIC: "0.5"
+      HHEM_THRESHOLD_LLM: "0.20"
       HF_HUB_OFFLINE: "1"
     volumes:
       - /srv/keystone-corpus-dev:/srv/keystone-corpus-dev
