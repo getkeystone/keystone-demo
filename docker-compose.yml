@@ -19,7 +19,7 @@ services:
 
   api:
     # build:
-    image: keystone-api:v0.5.0-versions
+    image: keystone-api:v0.5.1-review
 #       context: ../keystone-gov/api
 #       dockerfile: Dockerfile
     restart: unless-stopped
