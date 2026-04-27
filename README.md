@@ -29,7 +29,7 @@ Deployment configuration only. No engine code.
 
 ## What's live (v0.5.1-review)
 
-- Alberta OHS corpus: 54 documents, hybrid retrieval (FTS + vector)
+- Alberta OHS corpus: 53 documents, hybrid retrieval (FTS + vector)
 - Factual consistency scoring (HHEM-2.1-Open)
 - Feedback capture with auto-creation of review tasks
 - Document version tracking with temporal queries
