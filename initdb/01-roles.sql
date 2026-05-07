@@ -13,7 +13,7 @@ DO $$ BEGIN
   END IF;
 END $$;
 
-GRANT CONNECT ON DATABASE keystone TO keystone_app;
+GRANT CONNECT ON DATABASE keystone_dev TO keystone_app;
 GRANT USAGE   ON SCHEMA   public   TO keystone_app;
 
 -- Tables were created in 00-schema.sql; grant access now.
@@ -32,7 +32,7 @@ DO $$ BEGIN
   END IF;
 END $$;
 
-GRANT CONNECT ON DATABASE keystone TO keystone_reader;
+GRANT CONNECT ON DATABASE keystone_dev TO keystone_reader;
 GRANT USAGE   ON SCHEMA   public   TO keystone_reader;
 GRANT SELECT  ON ALL TABLES IN SCHEMA public TO keystone_reader;
 
