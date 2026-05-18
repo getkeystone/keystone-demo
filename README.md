@@ -72,4 +72,4 @@ curl -s http://127.0.0.1:8002/guidance/$QID -H "Authorization: Bearer $TOKEN" \
 
 - Put engine code in this repo
 - Share volumes with other deployments
-- Run commands against keystone-lrfd from this directory
+- Run commands against other repos from this directory
