@@ -9,7 +9,7 @@
 -- -------------------------------------------------------------------------
 DO $$ BEGIN
   IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'keystone_app') THEN
-    CREATE ROLE keystone_app WITH LOGIN PASSWORD 'keystone_app_pw';
+    CREATE ROLE keystone_app WITH LOGIN PASSWORD 'keystone_app';
   END IF;
 END $$;
 
